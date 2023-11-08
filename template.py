@@ -1,5 +1,6 @@
 # Template for Advent of Code.
 # Requirement - Advent of code data (https://pypi.org/project/advent-of-code-data/) with your session ID.
+# terminal -> aocd 2017 1 --example
 
 from aocd import get_data
 from colorama import Fore, init
