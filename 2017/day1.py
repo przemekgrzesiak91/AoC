@@ -17,10 +17,8 @@ year = 2017 #Edit this
 input = get_data(day = day,year = year)
 #print(input)
 
-# Result for part 1
-rp1 = 0
-# Result for part 2
-rp2 = 0
+# Result for part 1 & 2
+rp1, rp2 = 0, 0
 
 digits = list(str(input))
 
