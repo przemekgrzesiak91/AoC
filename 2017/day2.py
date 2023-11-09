@@ -28,7 +28,7 @@ print(input)
 
 import itertools as iter
 
-with open('Data/day2.txt') as f:
+with open('data/day2.txt') as f:
     input = f.readlines()
 
 part1_result = 0
