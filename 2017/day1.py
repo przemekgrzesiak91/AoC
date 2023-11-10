@@ -14,8 +14,9 @@ def result(day,year,rp1, rp2):
 day = 1     #Edit this
 year = 2017 #Edit this
 
-input = get_data(day = day,year = year)
-#print(input)
+filepath = 'data/day' + str(day) + '.txt'
+with open(filepath, 'r') as f:
+    input = f.readlines()
 
 # Result for part 1 & 2
 rp1, rp2 = 0, 0

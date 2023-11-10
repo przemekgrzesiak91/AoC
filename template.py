@@ -14,7 +14,8 @@ def result(day,year,rp1, rp2):
 day = 1     #Edit this
 year = 2017 #Edit this
 
-with open('data/day' + str(day) '.txt') as f:
+filepath = 'data/day' + str(day) + '.txt'
+with open(filepath, 'r') as f:
     input = f.readlines()
 
 # Result for part 1 & 2
