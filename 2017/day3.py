@@ -22,7 +22,33 @@ with open(filepath, 'r') as f:
 rp1, rp2 = 0, 0
 
 ### Code here
-print(input)
 
+def count_steps(number):
+    k = 1
+    while k ** 2 < number:
+        k += 2
+
+    if k == 1:
+        return 0
+
+    start = k // 2
+    cords = [start,-start]
+
+    #
+    if number >= k**2 - (k-1):
+        cords = [start - (k**2 - number), -start]
+    elif number >= k**2 - 2*(k-1):
+        cords = [-start,-start+(k**2 - k-1 - number)]
+    elif number >= k**2 - 3*(k-1):
+        cords = [-start +(k**2- 2*(k-1) - number),start]
+    elif number > k**2 - 4*(k-1):
+        cords = [start,start - (k**2 - 3*(k-1) - number)]
+
+    return (abs(cords[0])+abs(cords[1]))
+
+
+
+#count_steps(int(input))
+rp1 = count_steps(int(input))
 
 result(day,year,rp1,rp2)
