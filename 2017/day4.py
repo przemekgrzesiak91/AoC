@@ -1,5 +1,4 @@
 # Day 4 (2017)
-from aocd import get_data
 from colorama import Fore, init
 
 # Initialize colorama
