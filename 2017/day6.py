@@ -24,6 +24,8 @@ rp1, rp2 = 0, 0
 input = [int(x) for x in input]
 print(input)
 
+#input = [0,2,7,0]
+
 n = len(input)
 def find_max(banks):
     max_value = max(banks)
@@ -33,19 +35,23 @@ def find_max(banks):
 
 def distribute(banks):
     seen = []
-    seen.append(banks)
     current = banks.copy()
+    cycle = 0
 
-    while current != seen:
-        id = find_max(banks)
-        value = banks[id]
+    while current not in seen:
+        seen.append(current)
+        id = find_max(current)
+        value = current[id]
 
-        blocks = value % n-1
-        print(value, n-1)
-        banks = [banks[i]+blocks for i in range(0,len(banks)) if i != id]
-        print(banks)
+        blocks = value // (n-1)
+        print(id,blocks)
 
+        current = [current[i]+blocks if i!=id else current[i]-blocks*(n-1) for i in range(0,len(current))]
+        print(current)
+        print(seen)
+        cycle += 1
+    return cycle
 
-print(distribute(input))
+rp1 = (distribute(input))
 
 result(day,year,rp1,rp2)
