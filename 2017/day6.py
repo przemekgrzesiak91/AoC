@@ -33,25 +33,55 @@ def find_max(banks):
 
     return id
 
-def distribute(banks):
+def distribute(banks,part=1):
     seen = []
     current = banks.copy()
     cycle = 0
+    n = len(banks)
 
     while current not in seen:
-        seen.append(current)
+
+        seen.append(current.copy())
         id = find_max(current)
         value = current[id]
+        #print('--',id)
+        j = id
+        current[id] = 0
 
-        blocks = value // (n-1)
-        print(id,blocks)
+        for i in range(value):
+            if j+1 < n: j+=1
+            else: j=0
 
-        current = [current[i]+blocks if i!=id else current[i]-blocks*(n-1) for i in range(0,len(current))]
-        print(current)
-        print(seen)
+            current[j] += 1
         cycle += 1
-    return cycle
 
-rp1 = (distribute(input))
+    if part == 1:   return cycle
+    if part == 2:
+        cycle = -1
+
+        repeated = current.copy()
+        seen = []
+
+        while seen.count(repeated) < 2:
+
+            seen.append(current.copy())
+            id = find_max(current)
+            value = current[id]
+            # print('--',id)
+            j = id
+            current[id] = 0
+
+            for i in range(value):
+                if j + 1 < n:
+                    j += 1
+                else:
+                    j = 0
+
+                current[j] += 1
+            cycle += 1
+        return cycle
+
+rp1 = distribute(input)
+rp2 = distribute(input,2)
 
 result(day,year,rp1,rp2)
