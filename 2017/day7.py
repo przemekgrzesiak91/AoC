@@ -1,4 +1,10 @@
 # Day 7 (2017)
+
+'''Info
+library - NetworkX - https://www.reddit.com/r/adventofcode/comments/7i44pg/comment/dqw0f0c/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+
+'''
+
 from colorama import Fore, init
 
 # Initialize colorama
@@ -24,23 +30,24 @@ rp1, rp2 = 0, 0
 map = {}
 
 for row in input:
-    row = row.strip().split(' ')
-    #print(row[0])
+    row = row.strip().replace(',','').split(' ')
     if len(row) == 2:
         value = int(row[1].replace('(','').replace(')',''))
         map[row[0]] = [value]
     else:
-        map[row[0]] = [value,list(row[3:])]
+        map[row[0]] = [value,row[3:]]
 
-print(map)
-for key in map.keys():
-    seen = 0
-    for value in map.values():
-        if len(value) > 1:
-            if key in value[1]:
-                seen = 1
-    if seen == 0:
-        print(key)
+#print(map)
+def find_bottom(map):
+    for key in map.keys():
+        seen = 0
+        for value in map.values():
+            if len(value) > 1:
+                if key in value[1]:
+                    seen = 1
+        if seen == 0:
+            return key
 
+rp1 = find_bottom(map)
 
 result(day,year,rp1,rp2)
