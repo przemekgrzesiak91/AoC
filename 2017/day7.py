@@ -1,9 +1,5 @@
 # Day 7 (2017)
 
-'''Info
-library - NetworkX - https://www.reddit.com/r/adventofcode/comments/7i44pg/comment/dqw0f0c/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-
-'''
 
 from colorama import Fore, init
 
