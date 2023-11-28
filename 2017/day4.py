@@ -4,31 +4,26 @@ from colorama import Fore, init
 # Initialize colorama
 init(autoreset=True)
 
-def result(day,year,rp1, rp2):
-    print(Fore.YELLOW + '* ' + Fore.GREEN + 'ADVENT OF CODE ' + str(year)+ Fore.YELLOW + ' *')
-    print('Result for ' + Fore.CYAN + 'Day ' + str(day))
-    print(Fore.CYAN + str(rp1))
-    print(Fore.CYAN + str(rp2))
-
-day = 4    #Edit this
+day = 4     #Edit this
 year = 2017 #Edit this
 
-filepath = 'data/day' + str(day) + '.txt'
-with open(filepath, 'r') as f:
-    input = f.readlines()
+def parse():
+    filepath = 'data/day' + str(day) + '.txt'
+    with open(filepath, 'r') as f:
+        input = f.readlines()
+    return input
 
-# Result for part 1 & 2
-rp1, rp2 = 0, 0
-
-### Code here
-def check_valid(input):
+def solve_part1(input):
+    """Solve part 1."""
     n_valid = 0
     for row in input:
         row = row.strip().split(' ')
-        if len(row) == len(set(row)): n_valid+=1
+        if len(row) == len(set(row)): n_valid += 1
     return n_valid
 
-def check_valid2(input):
+
+def solve_part2(input):
+    """Solve part 2."""
     n_valid = 0
     for row in input:
         row = row.strip().split(' ')
@@ -38,7 +33,17 @@ def check_valid2(input):
     return n_valid
 
 
-rp1 = check_valid(input)
-rp2 = check_valid2(input)
+def result(day,year):
+    input = parse()
+    rp1 = solve_part1(input)
+    rp2 = solve_part2(input)
 
-result(day,year,rp1,rp2)
+
+    print(Fore.YELLOW + '* ' + Fore.GREEN + 'ADVENT OF CODE ' + str(year)+ Fore.YELLOW + ' *')
+    print('Result for ' + Fore.CYAN + 'Day ' + str(day))
+    print(Fore.CYAN + str(rp1))
+    print(Fore.CYAN + str(rp2))
+
+
+if __name__ == "__main__":
+    result(day,year)
