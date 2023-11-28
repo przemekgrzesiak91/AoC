@@ -1,4 +1,4 @@
-# Day 1 (2017)
+# Day 1 (2023)
 from colorama import Fore, init
 
 # Initialize colorama
@@ -11,7 +11,7 @@ def result(day,year,rp1, rp2):
     print(Fore.CYAN + str(rp2))
 
 day = 1     #Edit this
-year = 2017 #Edit this
+year = 2023 #Edit this
 
 filepath = 'data/day' + str(day) + '.txt'
 with open(filepath, 'r') as f:
@@ -21,8 +21,5 @@ with open(filepath, 'r') as f:
 rp1, rp2 = 0, 0
 
 ### Code here
-
-
-
 
 result(day,year,rp1,rp2)
