@@ -4,25 +4,34 @@ from colorama import Fore, init
 # Initialize colorama
 init(autoreset=True)
 
-def result(day,year,rp1, rp2):
+day = 1     #Edit this
+year = 2017 #Edit this
+
+def parse():
+    filepath = 'data/day' + str(day) + '.txt'
+    with open(filepath, 'r') as f:
+        input = f.readlines()
+    return input
+
+def solve_part1(input):
+    """Solve part 1."""
+    return 0
+
+def solve_part2(input):
+    """Solve part 2."""
+    return 0
+
+def result(day,year):
+
+    rp1 = solve_part1(input)
+    rp2 = solve_part2(input)
+
+
     print(Fore.YELLOW + '* ' + Fore.GREEN + 'ADVENT OF CODE ' + str(year)+ Fore.YELLOW + ' *')
     print('Result for ' + Fore.CYAN + 'Day ' + str(day))
     print(Fore.CYAN + str(rp1))
     print(Fore.CYAN + str(rp2))
 
-day = 1     #Edit this
-year = 2017 #Edit this
 
-filepath = 'data/day' + str(day) + '.txt'
-with open(filepath, 'r') as f:
-    input = f.readlines()
-
-# Result for part 1 & 2
-rp1, rp2 = 0, 0
-
-### Code here
-
-
-
-
-result(day,year,rp1,rp2)
+if __name__ == "__main__":
+    result(day,year)

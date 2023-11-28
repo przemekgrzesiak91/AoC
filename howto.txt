@@ -1,4 +1,3 @@
-Requirement - Advent of code data (pip install advent-of-code-data ) with your session ID.
 
 terminal -> aocd 2017 1 --example
 
