@@ -1,0 +1,33 @@
+# Virtual environments
+venv/
+env/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Python-specific files
+*.pyc
+*.pyo
+*.pyd
+.python-version
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# VS Code specific files
+.vscode/
+
+# PyCharm specific files
+.idea/
+*.iml
+*.iws
+*.ipr
