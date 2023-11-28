@@ -22,7 +22,7 @@ def solve_part2(input):
     return 0
 
 def result(day,year):
-
+    input = parse()
     rp1 = solve_part1(input)
     rp2 = solve_part2(input)
 
