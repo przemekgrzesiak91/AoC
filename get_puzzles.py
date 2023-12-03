@@ -18,7 +18,7 @@ def get_puzzles(year,day_range):
 
     for i in range(min, max+1):
         path = path0 + str(i)+'.txt'
-        command = ('aocd ' + str(i) + ' 2017 > '+ path )
+        command = ('aocd ' + str(i) + ' ' + year +' > '+ path )
 
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         output, error = process.communicate()
