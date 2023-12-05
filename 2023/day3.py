@@ -19,8 +19,11 @@ def solve_part1(input):
     #print(set(input)) #what with '\n'
     symbols = {'+', '=', '#', '*', '@', '&', '-', '%', '/', '$'}
     nums = [str(x) for x in range(0,10)]
+    gears = []
 
-    def check_adjacent(value_pos):
+    def check_adjacent(value_pos,value):
+        adj_pos = []
+
         min_i = value_pos[0][0] - 1
         if min_i < 0: min_i = 0
         min_j = value_pos[0][1] - 1
@@ -30,13 +33,22 @@ def solve_part1(input):
         if max_i > ncol-1: max_i = ncol
         max_j = value_pos[-1][1] + 2
         if max_j > ncol-1: max_j = ncol
+
         #print(matrix[min_i:max_i,min_j:max_j])
-        adj = matrix[min_i:max_i,min_j:max_j]
-        for symbol in symbols:
-            if symbol in adj:
+        for i in range(min_i,max_i):
+            for j in range(min_j,max_j):
+                adj_pos.append((i,j))
+        #print (adj_pos)
+
+        for pos in adj_pos:
+            value_adj_pos = matrix[pos]
+            if value_adj_pos in symbols:
+                if value_adj_pos =='*':
+                    gears.append((pos,value))
                 return True
 
         return False
+
     rp1 = 0
     nrow = input.count('\n')
     ncol = int((len(input) - nrow)/nrow)
@@ -56,16 +68,27 @@ def solve_part1(input):
             else:
                 if value_pos != []:
                     #print(value_pos, value)
-                    if check_adjacent(value_pos): rp1 += int(value)
+                    if check_adjacent(value_pos, value): rp1 += int(value)
                     value_pos = []
                     value = ''
         if value_pos != []:
-            if check_adjacent(value_pos): rp1 += int(value)
+            if check_adjacent(value_pos, value): rp1 += int(value)
             value_pos = []
             value = ''
 
+    # Part 2
+    rp2 = 0
 
-    return rp1
+    while gears:
+        current = gears.pop()
+
+        for gear in gears:
+            if current[0] == gear[0]:
+                rp2 += (int(current[1])*int(gear[1]))
+
+
+
+    return rp1, rp2
 
 def solve_part2(input):
     """Solve part 2."""
@@ -73,8 +96,7 @@ def solve_part2(input):
 
 def result(day,year):
     input = parse()
-    rp1 = solve_part1(input)
-    rp2 = solve_part2(input)
+    rp1, rp2 = solve_part1(input)
 
 
     print(Fore.YELLOW + '* ' + Fore.GREEN + 'ADVENT OF CODE ' + str(year)+ Fore.YELLOW + ' *')
