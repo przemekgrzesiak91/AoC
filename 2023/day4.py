@@ -40,11 +40,11 @@ def solve_part2(input):
     """Solve part 2."""
     rp2 = 0
     for card in input.keys():
-        copies = input[card][0]
-        print(card, ' --',copies)
-        for i in range(card+1,copies+2):
-            input[i][1] += 1
-    print(input)
+        n_cards = input[card][0]
+        instance = input[card][1]
+        for i in range(1, n_cards+1):
+            if (card+i)<=len(input):
+                input[card+i][1] += 1*instance
 
     for card in input.keys():
         rp2 += input[card][1]
