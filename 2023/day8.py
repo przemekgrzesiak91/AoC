@@ -20,14 +20,24 @@ def solve_part1(input):
     nodes = {}
     len_nav = len(nav)
 
-
     for row in input[2:]:
         key, value = row.strip().split(' = ')
         nodes[key] = value[1:-1].split(', ')
 
-    print(nodes)
+    current = 'AAA'
+    i=0
+    steps = 0
+    while current != 'ZZZ':
+        if nav[i] == 'L': current = nodes[current][0]
+        elif nav[i] == 'R': current = nodes[current][1]
 
-    return 0
+        steps += 1
+        i += 1
+
+        if i >= len_nav-1: i = 0
+
+
+    return steps
 
 def solve_part2(input):
     """Solve part 2."""
