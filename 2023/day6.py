@@ -1,10 +1,10 @@
-# Day 1 (2023)
+# Day 6 (2023)
 from colorama import Fore, init
 
 # Initialize colorama
 init(autoreset=True)
 
-day = 1     #Edit this
+day = 6     #Edit this
 year = 2023 #Edit this
 
 def parse():
@@ -15,6 +15,7 @@ def parse():
 
 def solve_part1(input):
     """Solve part 1."""
+    print(input)
     return 0
 
 def solve_part2(input):
