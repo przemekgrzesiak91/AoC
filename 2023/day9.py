@@ -19,7 +19,7 @@ def solve_part1(input):
 
     for row in input:
         map = []
-        new_value = 0
+
         row = [int(x) for x in row.strip().split(' ')]
         map.append(row)
 
@@ -32,10 +32,8 @@ def solve_part1(input):
             map.append(new_row)
         #print(map)
         for x in map:
-            new_value += x[-1]
-        #print(new_value)
+            rp1 += x[-1]
 
-        rp1+=new_value
     return rp1
 
 def solve_part2(input):
@@ -44,8 +42,8 @@ def solve_part2(input):
 
     for row in input:
         map = []
-        new_value = 0
         row = [int(x) for x in row.strip().split(' ')]
+        row = row[::-1]
         map.append(row)
 
         while not all(element == 0 for element in map[-1]):
@@ -57,10 +55,8 @@ def solve_part2(input):
             map.append(new_row)
         # print(map)
         for x in map:
-            new_value += x[0]
-        # print(new_value)
+            rp2 += x[-1]
 
-        rp2 += new_value
     return rp2
 
 
