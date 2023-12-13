@@ -12,7 +12,7 @@ def extrapolate(input):
     while set(input)!={0}:
         input=returnDifference(input)
     return sum(last)
-for i in puzzleInput:
+for i in [puzzleInput[106],puzzleInput[167]]:
     print(extrapolate(i))
 print('part 1:', sum([extrapolate(i) for i in puzzleInput]))
 print('part 2:', sum([extrapolate(i[::-1]) for i in puzzleInput]))

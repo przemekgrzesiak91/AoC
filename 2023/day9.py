@@ -23,23 +23,46 @@ def solve_part1(input):
         row = [int(x) for x in row.strip().split(' ')]
         map.append(row)
 
-        while sum(map[-1]) != 0:
+        while not all(element == 0 for element in map[-1]):
+        #while sum(map[-1]) != 0:
             #print(map[-1])
             new_row = []
             for i in range(0,len(map[-1])-1):
                 new_row.append(map[-1][i+1]-map[-1][i])
             map.append(new_row)
-
+        #print(map)
         for x in map:
             new_value += x[-1]
-        print(new_value)
+        #print(new_value)
 
         rp1+=new_value
     return rp1
 
 def solve_part2(input):
     """Solve part 2."""
-    return 0
+    rp2 = 0
+
+    for row in input:
+        map = []
+        new_value = 0
+        row = [int(x) for x in row.strip().split(' ')]
+        map.append(row)
+
+        while not all(element == 0 for element in map[-1]):
+            # while sum(map[-1]) != 0:
+            # print(map[-1])
+            new_row = []
+            for i in range(0, len(map[-1]) - 1):
+                new_row.append(map[-1][i + 1] - map[-1][i])
+            map.append(new_row)
+        # print(map)
+        for x in map:
+            new_value += x[0]
+        # print(new_value)
+
+        rp2 += new_value
+    return rp2
+
 
 def result(day,year):
     input = parse()
@@ -51,12 +74,8 @@ def result(day,year):
     print('Result for ' + Fore.CYAN + 'Day ' + str(day))
     print(Fore.CYAN + str(rp1))
     print(Fore.CYAN + str(rp2))
-    print(1743490457)
 
 
 if __name__ == "__main__":
     result(day,year)
 
-
-
-# row 107 (1) i row 168 (-2)
