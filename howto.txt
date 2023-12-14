@@ -4,3 +4,4 @@ terminal -> aocd 2017 1 --example
 to save
 terminal -> aocd *day* *year* > *filename*
 
+venv/bin/active

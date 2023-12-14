@@ -16,6 +16,7 @@ def get_puzzles(year,day_range):
     else:
         min,max = [int(x) for x in day_range.split('-')]
 
+    print(min,max)
     for i in range(min, max+1):
         path = path0 + str(i)+'.txt'
         command = ('aocd ' + str(i) + ' ' + year +' > '+ path )

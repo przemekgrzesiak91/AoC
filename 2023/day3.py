@@ -57,6 +57,7 @@ def solve_part1(input):
     matrix = np.matrix(list(''.join(input.replace('\n',''))))
     matrix = np.reshape(matrix,(nrow,ncol))
 
+
     for i in range(0,nrow):
         value_pos = []
         value = ''
