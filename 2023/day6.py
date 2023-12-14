@@ -1,6 +1,7 @@
 # Day 6 (2023)
-from colorama import Fore, init
 
+from colorama import Fore, init
+import re
 # Initialize colorama
 init(autoreset=True)
 
@@ -15,12 +16,32 @@ def parse():
 
 def solve_part1(input):
     """Solve part 1."""
-    print(input)
-    return 0
+    rp1 = 1
+    times = [int(x) for x in re.findall('\d+',input[0])]
+    distances = [int(x) for x in re.findall('\d+',input[1])]
+
+
+    for i in range(0,len(times)):
+        n_wins = 0
+        time = times[i]
+        distance = distances[i]
+        for j in range(1,time):
+            if j*(time-j) > distance: n_wins+=1
+        rp1 *= n_wins
+
+
+    return rp1
 
 def solve_part2(input):
     """Solve part 2."""
-    return 0
+    rp2 = 0
+    time = int(''.join([x for x in re.findall('\d', input[0])]))
+    distance = int(''.join([x for x in re.findall('\d', input[1])]))
+
+    for j in range(1, time):
+        if j * (time - j) > distance: rp2 += 1
+
+    return rp2
 
 def result(day,year):
     input = parse()
