@@ -54,8 +54,8 @@ def solve_part1(input):
     ncol = int((len(input) - nrow)/nrow)
 
     #print(ncol,nrow)
-    matrix = np.matrix(list(''.join(input.replace('\n',''))))
-    matrix = np.reshape(matrix,(nrow,ncol))
+    matrix = np.matrix(list(''.join(input.replace('\n', ''))))
+    matrix = np.reshape(matrix, (nrow, ncol))
 
 
     for i in range(0,nrow):

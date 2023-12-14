@@ -23,6 +23,9 @@ def solve_part1(input):
     matrix = np.matrix(list(''.join(input.replace('\n', ''))))
     matrix = np.reshape(matrix, (nrow, ncol))
 
+    matrix2 = matrix.copy()
+
+
     xS,yS = np.argwhere(matrix == 'S')[0]
     print(xS,yS)
 
@@ -43,7 +46,7 @@ def solve_part1(input):
     rp1 += 1
 
     while current_symbol != 'S':
-        print(last, current, current_symbol)
+        #print(last, current, current_symbol)
         if current_symbol == 'J':
             if last[0]==current[0]:
                 last = current
@@ -86,9 +89,11 @@ def solve_part1(input):
 
         rp1 += 1
         current_symbol = matrix[current]
+        matrix2[current] = 'O'
 
 
-
+    for row in matrix2:
+        print(''.join(str(row).replace('\n','').replace("[", "").replace("]", "").replace("'", "").replace(" ", "")))
     return int(rp1/2)
 
 def solve_part2(input):
