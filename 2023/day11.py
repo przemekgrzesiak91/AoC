@@ -15,7 +15,7 @@ def parse():
         input = f.read()
     return input
 
-def solve(input, x):
+def solv(input, x):
     """Solve part 1."""
     result = 0
 
