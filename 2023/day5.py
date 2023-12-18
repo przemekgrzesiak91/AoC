@@ -23,35 +23,47 @@ def parse():
     with open(filepath, 'r') as f:
         input = f.readlines()
         seeds  = [int(x) for x in input[0].strip().split(' ')[1:]]
-        print(seeds)
-        mapping = [[(98,100),(50,52)],[(50,98),(52,100)]]
+        mapping = []
+        current = []
+        for row in input[2:]:
 
-
-        for start in seeds:
-            print(start)
-
-            for step in mapping:
-                print(step)
-                for new_range in step:
-                    print(new_range)
-                    if start in x[0]:
-                        print(start, x.index([start]))
-
-                        #loop over and take value from 2nd range
-
-
-            for x in soil:
-                if seed in x: print(seed)
-
-
-
-
+            if row[0].isdigit():
+                dest,source,length = [int(x) for x in row.split(' ')]
+                #print(dest,source,length)
+                current.append([(source,source+length),(dest,dest+length)])
+            elif row =='\n':
+                #print(current)
+                mapping.append(current)
+                current = []
+        mapping.append(current)
+        current = []
+        print(mapping)
+        input = [seeds,mapping]
     return input
 
 def solve_part1(input):
     """Solve part 1."""
-    print(input)
-    return 0
+    print(len(input[1]))
+    rp1 = 0
+    for start in input[0]:
+        print('----')
+        print(start)
+        for step in input[1]:
+            for change in step:
+                source_range = range(*change[1])
+                destination_range = range(*change[0])
+
+                # print(source_range, destination_range)
+                if start in destination_range:
+                    id = destination_range.index(start)
+                    start = source_range[id]
+                    print(start,'>',sep=" ")
+        print(start)
+
+        '''example 2 - light should be 42 check this'''
+
+
+    return rp1
 
 def solve_part2(input):
     """Solve part 2."""
