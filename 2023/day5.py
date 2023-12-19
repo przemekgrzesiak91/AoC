@@ -51,13 +51,16 @@ def solve_part1(input):
         for step in input[1]:
             for change in step:
                 source_range = range(*change[1])
-                destination_range = range(*change[0])
+                destination_range = list(range(*change[0]))
 
                 # print(source_range, destination_range)
                 if start in destination_range:
+                    if start == 38:
+                        print(source_range,destination_range)
+                        print(destination_range.index(38))
                     id = destination_range.index(start)
                     start = source_range[id]
-                    print(start,'>',sep=" ")
+                    print(start,'>',id,sep=" ")
         print(start)
 
         '''example 2 - light should be 42 check this'''
