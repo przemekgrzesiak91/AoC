@@ -37,19 +37,16 @@ def parse():
                 current = []
         mapping.append(current)
         current = []
-        print(mapping)
         input = [seeds,mapping]
     return input
 
 def solve_part1(input):
     """Solve part 1."""
-    print(len(input[1]))
-    rp1 = 0
     rp1 = 9999999999
 
     for start in input[0]:
-        print('----')
-        print(start)
+        #print('----')
+        #print(start)
         for step in input[1]:
             for change in step:
                 source_range = change[0]
@@ -58,14 +55,36 @@ def solve_part1(input):
                 if start >= source_range[0] and start <= source_range[1]:
                     start = start - source_range[0] + destination_range[0]
                     break
-        print(start)
+        #print(start)
         if start < rp1: rp1 = start
 
     return rp1
 
 def solve_part2(input):
     """Solve part 2."""
-    return 0
+    rp2 = 9999999999
+    seed_ranges = []
+    for i in range(0, len(input[0]), 2):
+        seed_ranges.append(range(input[0][i], input[0][i + 1]+input[0][i]))
+
+    #print(seed_ranges)
+
+    for pair in seed_ranges:
+        print('----')
+        for start in list(pair):
+
+            #print(start)
+            for step in input[1]:
+                for change in step:
+                    source_range = change[0]
+                    destination_range = change[1]
+
+                    if start >= source_range[0] and start <= source_range[1]:
+                        start = start - source_range[0] + destination_range[0]
+                        break
+            #print(start)
+            if start < rp2: rp2 = start
+    return rp2
 
 def result(day,year):
     input = parse()
