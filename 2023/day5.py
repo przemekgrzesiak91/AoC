@@ -45,26 +45,21 @@ def solve_part1(input):
     """Solve part 1."""
     print(len(input[1]))
     rp1 = 0
+    rp1 = 9999999999
+
     for start in input[0]:
         print('----')
         print(start)
         for step in input[1]:
             for change in step:
-                source_range = range(*change[1])
-                destination_range = list(range(*change[0]))
+                source_range = change[0]
+                destination_range = change[1]
 
-                # print(source_range, destination_range)
-                if start in destination_range:
-                    if start == 38:
-                        print(source_range,destination_range)
-                        print(destination_range.index(38))
-                    id = destination_range.index(start)
-                    start = source_range[id]
-                    print(start,'>',id,sep=" ")
+                if start >= source_range[0] and start <= source_range[1]:
+                    start = start - source_range[0] + destination_range[0]
+                    break
         print(start)
-
-        '''example 2 - light should be 42 check this'''
-
+        if start < rp1: rp1 = start
 
     return rp1
 
