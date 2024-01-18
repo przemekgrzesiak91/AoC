@@ -26,7 +26,18 @@ def solve_part1(input):
 
 def solve_part2(input):
     """Solve part 2."""
-    return 0
+    rp2 = 0
+
+    for i in input:
+        start = 0
+        if '-' in i: j = i.split('-')[0]
+        if '=' in i: j = i.split('=')[0]
+
+        for char in j:
+            start = ((start + ord(char)) * 17) % 256
+        print(j,start)
+        rp2 += start
+    return rp2
 
 def result(day,year):
     input = parse()
