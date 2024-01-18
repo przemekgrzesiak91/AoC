@@ -27,15 +27,32 @@ def solve_part1(input):
 def solve_part2(input):
     """Solve part 2."""
     rp2 = 0
+    boxes = {i: [] for i in range(256)}
+    print(boxes)
 
     for i in input:
         start = 0
         if '-' in i: j = i.split('-')[0]
-        if '=' in i: j = i.split('=')[0]
+        if '=' in i: j,value = i.split('=')
 
         for char in j:
             start = ((start + ord(char)) * 17) % 256
-        print(j,start)
+
+        if '-' in i:
+            print(j)
+            if j in boxes[start]:
+                boxes[start].remove(j)
+        else:
+            if j in boxes[start]:
+                #podmiana value
+                pass
+            else:
+                boxes[start].append((j,value))
+
+    for box in boxes.items():
+        print
+        if box[1] != []:
+            print(box)
         rp2 += start
     return rp2
 
