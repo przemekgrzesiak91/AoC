@@ -27,8 +27,8 @@ def solve_part1(input):
 def solve_part2(input):
     """Solve part 2."""
     rp2 = 0
-    boxes = {i: [] for i in range(256)}
-    print(boxes)
+    boxes = {i: {} for i in range(256)}
+    #print(boxes)
 
     for i in input:
         start = 0
@@ -39,21 +39,23 @@ def solve_part2(input):
             start = ((start + ord(char)) * 17) % 256
 
         if '-' in i:
-            print(j)
             if j in boxes[start]:
-                boxes[start].remove(j)
+                del boxes[start][j]
+                #boxes[start].remove(j)
         else:
             if j in boxes[start]:
-                #podmiana value
+                boxes[start][j]=int(value)
                 pass
             else:
-                boxes[start].append((j,value))
+                boxes[start][j]=int(value)
+        #print(boxes[3])
 
     for box in boxes.items():
-        print
-        if box[1] != []:
-            print(box)
-        rp2 += start
+        # if box[1] != {}:
+        #     print(box)
+        for index, (key, value) in enumerate(box[1].items()):
+            rp2 += (box[0]+1)*(index+1)*value
+
     return rp2
 
 def result(day,year):
