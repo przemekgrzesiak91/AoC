@@ -1,4 +1,3 @@
-# Day 1 (2018)
 from colorama import Fore, init
 
 # Initialize colorama

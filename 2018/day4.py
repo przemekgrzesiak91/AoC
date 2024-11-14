@@ -3,8 +3,8 @@ from colorama import Fore, init
 # Initialize colorama
 init(autoreset=True)
 
-day = 1     #Edit this
-year = 2023 #Edit this
+day = 4     #Edit this
+year = 2018 #Edit this
 
 def parse():
     filepath = 'data/day' + str(day) + '.txt'
