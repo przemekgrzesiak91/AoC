@@ -2,6 +2,8 @@ from IPython.utils.text import marquee
 from colorama import Fore, init
 import re
 
+from sympy.strategies.branch import condition
+
 # Initialize colorama
 init(autoreset=True)
 
@@ -32,14 +34,18 @@ def solve_part2(input):
     result = 0
 
     #poprawic pattern
-
-    pattern = r"mul\(\d+,\d+\)|do\(\)|do\ not\(\)"
+    print(input)
+    pattern = r"mul\(\d+,\d+\)|do\(\)|don't\(\)"
     matches = re.findall(pattern, str(input))
     print(matches)
-    # for match in matches:
-    #     # print(match)
-    #     x, y = [int(i) for i in re.findall(r'\d+', match)]
-    #     result += x * y
+    condition = True
+    for match in matches:
+        if match == 'don\'t()': condition = False
+        elif match == 'do()': condition = True
+        elif condition:
+        # print(match)
+            x, y = [int(i) for i in re.findall(r'\d+', match)]
+            result += x * y
 
     return result
 
