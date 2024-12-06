@@ -30,12 +30,14 @@ def parse():
 def solve_part1(input):
     """Solve part 1."""
     pages_dict, orders = input
+    #print(pages_dict)
     result = 0
 
     for order in orders:
         correct = True
         n=len(order)
         order = order[::-1]
+
         for i in range(n-1):
             check = order[i+1:]
             if order[i] in pages_dict:
@@ -47,12 +49,50 @@ def solve_part1(input):
             mid_id = round(n//2)
             result += order[mid_id]
 
-
     return result
 
 def solve_part2(input):
     """Solve part 2."""
-    return 0
+    pages_dict, orders = input
+    print(pages_dict)
+    incorrect_orders = []
+    result = 0
+
+    for order in orders:
+        correct = True
+        n = len(order)
+        order = order[::-1]
+        for i in range(n - 1):
+            check = order[i + 1:]
+            if order[i] in pages_dict:
+                common_elements = set(order[i + 1:]) & set(pages_dict[order[i]])
+                if common_elements:
+                    correct = False
+
+        if not correct:
+            incorrect_orders.append(order)
+
+    for order in incorrect_orders:
+        order = order[::-1]
+        print(order)
+        new_order = []
+
+        while len(order)>1:
+
+            n=len(order)
+            for i in range(n):
+                if order[i] in pages_dict:
+                    diff = set(x for x in order if x != i) - set(pages_dict[order[i]])
+                    diff_elem = list(diff)[0]
+                    print(diff, diff_elem)
+                    # problem how to check recursvie maybe for te next subsets and so on.
+                    new_order.append(diff_elem)
+                    order.remove(diff_elem)
+                    break
+        new_order.append(order[0])
+        print(new_order)
+
+    return result
 
 def result(day,year):
     input = parse()
