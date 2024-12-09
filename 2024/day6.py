@@ -19,7 +19,7 @@ def parse():
 
 def solve_part1(input):
     """Solve part 1."""
-    result = 1
+    result = 0
     n,m = np.shape(input)
 
     # finding start
@@ -66,7 +66,8 @@ def solve_part1(input):
                 direction = '^'
 
     return result
-# wrong result, fix + make animations ?
+# test +1, my puzzle -1 ??? add animation
+
 
 
 def solve_part2(input):
