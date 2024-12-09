@@ -68,7 +68,10 @@ def solve_part2(input):
                     break
                 print(temp_x)
 
-                #nie wiem kurwaa
+
+
+
+
 
     return result
 

@@ -25,6 +25,7 @@ def solve_part1(input):
         x.append(int(row[0]))
         y.append(int(row[1]))
 
+
     x.sort()
     y.sort()
 
