@@ -1,4 +1,5 @@
 from colorama import Fore, init
+from django.contrib.sitemaps.views import index
 
 # Initialize colorama
 init(autoreset=True)
@@ -32,48 +33,54 @@ def solve_part1(input):
 
     return result
 
+
 def solve_part2(input):
     """Solve part 2."""
     result = 0
+
     for x in input:
+        print()
+        print(input.index(x), x,end=' ')
+        # Sprawdzamy różnice między kolejnymi elementami
         n_diff = 0
-        n_diff2 = 0
-        if x[0] > x[1]:
-            # decreasing
+
+        # Jeśli lista jest malejąca, odwracamy ją
+        if x[0] > x[1] :
             x = x[::-1]
 
+        # Sprawdzamy, czy różnice między wszystkimi kolejnymi elementami są w zakresie 1, 2, 3
         for i in range(len(x) - 1):
             diff = x[i + 1] - x[i]
-
-            if diff not in (1, 2, 3): n_diff += 1
+            if diff not in (1, 2, 3):
+                n_diff += 1
+        # Jeśli żadna różnica nie jest poza zakresem (1, 2, 3), dodajemy wynik
         if n_diff == 0:
+            print('OK - ')
             result += 1
         else:
-            for j in range(len(x)-1):
-                temp_x = x[:]
-                temp_x.pop(j)
+            # Spróbuj usunąć jeden element i sprawdź ponownie
+            x = x[::-1]
+            for j in range(len(x)):
+                temp_x = x[:j] + x[j + 1:]  # Usuwamy element z indeksu j
+                if temp_x[0] > temp_x[1]:
+                    temp_x = temp_x[::-1]
                 print(temp_x)
                 n_diff = 0
-
                 for i in range(len(temp_x) - 1):
-
-
                     diff = temp_x[i + 1] - temp_x[i]
-
                     if diff not in (1, 2, 3):
                         n_diff += 1
 
                 if n_diff == 0:
+                    print('OK - ')
                     result += 1
                     break
-                print(temp_x)
-
-
-
-
-
+                #print('bad - ', n_diff, temp_x)
 
     return result
+
+
+
 
 def result(day,year):
     input = parse()
