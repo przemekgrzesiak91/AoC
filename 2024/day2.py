@@ -1,5 +1,4 @@
 from colorama import Fore, init
-from django.contrib.sitemaps.views import index
 
 # Initialize colorama
 init(autoreset=True)
