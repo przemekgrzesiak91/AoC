@@ -9,7 +9,7 @@ year = 2025 #Edit this
 def parse():
     filepath = 'data/day' + str(day) + '.txt'
     with (open(filepath, 'r') as f):
-        input = [int(x) for x in f.read().splitlines()]
+        input = f.read().splitlines()
 
     return input
 
