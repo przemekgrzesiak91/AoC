@@ -11,55 +11,41 @@ def parse():
     with open(filepath, 'r') as f:
         return f.read().strip().splitlines()
 
-def solve_part1(data):
-    start = 50
-    count_zero = 0
-
-    for line in data:
-        direction, value = line[0], int(line[1:])
-
-        if direction == "R":
-            start = (start + value) % 100
-        else:
-            start = (start - value) % 100
-
-        if start == 0:
-            count_zero += 1
-
-        #print(line, "-", start, "-", count_zero)
-
-    return count_zero
-
-
-def solve_part2(data):
-    start = 50
+def solve_part1(data: list[str]) -> int:
+    pos = 50
     hits = 0
 
     for line in data:
-        direction = line[0]
-        value = int(line[1:])
+        step = int(line[1:])
+        pos += step if line[0] == "R" else -step
+        pos %= 100
 
-        if direction == "R":
-            first = (100 - start) % 100
-            if first == 0:
-                first = 100
-
-            if first <= value:
-                hits += 1 + (value - first) // 100
-
-            start = (start + value) % 100
-
-        else:  # L
-            first = start % 100
-            if first == 0:
-                first = 100
-
-            if first <= value:
-                hits += 1 + (value - first) // 100
-
-            start = (start - value) % 100
+        if pos == 0:
+            hits += 1
 
     return hits
+
+
+
+def solve_part2(data: list[str]) -> int:
+    pos = 50
+    hits = 0
+
+    for line in data:
+        step = int(line[1:])
+        direction = 1 if line[0] == "R" else -1
+
+        distance_to_zero = (100 - pos) % 100 if direction == 1 else pos % 100
+        if distance_to_zero == 0:
+            distance_to_zero = 100
+
+        if distance_to_zero <= step:
+            hits += 1 + (step - distance_to_zero) // 100
+
+        pos = (pos + direction * step) % 100
+
+    return hits
+
 
 
 def result(day,year):

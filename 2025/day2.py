@@ -1,5 +1,4 @@
 from colorama import Fore, init
-from jupyter_core.version import pattern
 
 # Initialize colorama
 init(autoreset=True)
@@ -13,52 +12,41 @@ def parse():
         input = f.read().replace('\n','').split(',')
     return input
 
-def solve_part1(input):
-    """Solve part 1."""
-    invalid = []
-
-    for i in input:
-        min, max = [int(num) for num in i.split('-')]
-
-        for x in range(min, max+1):
-            new_x = list(str(x))
-            len_x = len(new_x)
-
-            a = new_x[:(len_x//2)]
-            b = new_x[(len_x//2):]
-
-            if a == b:
-                invalid.append(x)
+def is_double(s: str) -> bool:
+    mid = len(s) // 2
+    return s[:mid] == s[mid:]
 
 
+def solve_part1(ranges):
+    invalid = set()
+    for r in ranges:
+        lo, hi = map(int, r.split('-'))
+        for x in range(lo, hi + 1):
+            if is_double(str(x)):
+                invalid.add(x)
+    return sum(invalid)
+
+
+def solve_part2(input_ranges):
+    invalid = set()
+
+    for r in input_ranges:
+        lo, hi = map(int, r.split('-'))
+
+        for x in range(lo, hi + 1):
+            s = str(x)
+            n = len(s)
+
+            for size in range(1, n//2 + 1):
+                if n % size != 0:
+                    continue
+                pattern = s[:size]
+                if pattern * (n // size) == s:
+                    invalid.add(x)
+                    break  # nie musimy sprawdzać większych wzorców
 
     return sum(invalid)
 
-def solve_part2(input):
-    """Solve part 2."""
-
-    invalid = [0,]
-
-    for i in input:
-        min, max = [int(num) for num in i.split('-')]
-
-        for x in range(min, max + 1):
-            new_x = list(str(x))
-            len_x = len(new_x)
-
-            for y in range((len_x//2)):
-                pattern = new_x[:y+1]
-                len_p = len(pattern)
-                if len_x % len_p != 0: continue
-                else:
-                    if all(new_x[z:z + len_p] == pattern for z in range(0, len_x, len_p)):
-
-                        if invalid[-1] != x:
-                            #print(x)
-                            invalid.append(x)
-                            continue
-
-    return sum(invalid)
 
 def result(day,year):
     input = parse()

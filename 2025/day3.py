@@ -23,11 +23,25 @@ def solve_part1(input_lines):
     return total
 
 
-def solve_part2(input):
-    """Solve part 2."""
-    return 0
+def solve_part2(input_lines):
+    total = 0
+    n = 12  # liczba cyfr do włączenia
 
+    for line in input_lines:
+        digits = list(map(int, line))
+        result = []
+        to_pick = n
 
+        for i, d in enumerate(digits):
+            while result and d > result[-1] and len(result) - 1 + len(digits) - i >= to_pick:
+                result.pop()
+            if len(result) < to_pick:
+                result.append(d)
+
+        max_joltage = int(''.join(map(str, result)))
+        total += max_joltage
+
+    return total
 
 
 def result(day,year):
